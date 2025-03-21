@@ -4,7 +4,9 @@ import seaborn as sns
 # see the data has been given
 
 
-df = pd.read_csv("")
+df = pd.read_csv(
+    r"C:\Users\Alaa\Desktop\project for data manipulation with python\TWO_CENTURIES_OF_UM_RACES.CSV.csv"
+)
 
 # Test is with the first 5 lines
 firstfive = df.head()
@@ -44,7 +46,7 @@ event_search_usa = (
     .str.split(")")
     .str.get(0)
 )
-print(event_search_usa)
+# print(event_search_usa)
 
 
 # now all the events in the united states
@@ -52,4 +54,51 @@ print(event_search_usa)
 all_events_in_united_states = df[
     df["Event name"].str.split("(").str.get(1).str.split(")").str.get(0) == "USA"
 ]
-print(all_events_in_united_states)
+# print(all_events_in_united_states)
+
+
+# combining many filters together
+
+combo_filters_XD = df[
+    (df["Event distance/length"].isin(["50mi", "50Km"]))
+    & (df["Year of event"] == 2020)
+    & (df["Event name"].str.split("(").str.get(1).str.split(")").str.get(0) == "USA")
+]
+
+# print(combo_filters_XD)
+
+
+# lets create a new dataframe just containing the usa events
+
+df2 = df[
+    (df["Event distance/length"].isin(["50mi", "50Km"]))
+    & (df["Year of event"] == 2020)
+    & (df["Event name"].str.split("(").str.get(1).str.split(")").str.get(0) == "USA")
+]
+
+
+print(df2.head(10))
+
+
+# remove usa from df2
+df2["Event name"].str.split("(").str.get(0)
+print(df2)
+
+
+# clean the athlete age category
+df2["Athlete year of birth"] = df2["Athlete year of birth"].fillna(0)
+
+# Calculate Age
+df2["Athlete year of birth"] = (
+    df2["Year of event"] - df2["Athlete year of birth"]
+).astype(int)
+df2.rename(columns={"Athlete year of birth": "Age"}, inplace=True)
+
+# print(df2.head(3))
+
+# now from the athlete performance we are going to remove the h
+
+df2["Athlete performance"] = df2["Athlete performance"].str.replace(
+    "h", "", regex=False
+)
+print(df2.head(2))
