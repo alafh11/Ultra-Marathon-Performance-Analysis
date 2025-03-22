@@ -1,5 +1,4 @@
 import pandas as pd
-import seaborn as sns
 
 # see the data has been given
 
@@ -136,10 +135,53 @@ check_duplicates = df2[df2.duplicated() == True]
 print(check_duplicates)
 
 df2 = df2.reset_index(drop=True)
-# print(df2.head(5))
+print(df2.head(5))
 
 
 # fix types
 
+
+df2["Age"] = df2["Age"].astype(int)
+df2["Athlete average speed"] = df2["Athlete average speed"].astype(float)
+
 dtypes_of_df2 = df2.dtypes
 print(dtypes_of_df2)
+
+
+# lets rename all the cols
+
+df2 = df2.rename(
+    columns={
+        "Year of event": "year",
+        "Event dates": "date",
+        "Event distance/length": "distance_length",
+        "Event number of finishers": "num_finishers",
+        "Athlete performance": "performance",
+        "Athlete gender": "speed",
+        "Athlete average speed": "avg_speed",
+        "Athlete ID": "ID",
+    }
+)
+
+print(df2.head(3))
+
+# now lets reorder the cols
+
+df3 = df2[
+    [
+        "date",
+        "year",
+        "Event name",
+        "num_finishers",
+        "Age",
+        "avg_speed",
+        "speed",
+        "ID",
+        "distance_length",
+    ]
+]
+print(df3.head(2))
+
+
+# now its time for graphs and use seaborn
+import seaborn as sns
