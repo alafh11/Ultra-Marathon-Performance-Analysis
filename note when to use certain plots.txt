@@ -1,0 +1,92 @@
+Got it! You want a quick reminder of when to use certain types of plots in Seaborn for different kinds of data (numerical, categorical, etc.). Here's a summary to guide you:
+
+### **1. For Numerical Data:**
+
+- **Distribution of a single numerical variable:**
+  - **`sns.histplot()`**: For **histograms** to show the distribution of a single numerical variable.
+  - **`sns.kdeplot()`**: For **Kernel Density Estimation** (KDE) plots (smoothed version of histograms).
+  - **`sns.boxplot()`**: For **box plots** to show the spread, median, and outliers of the numerical data.
+
+  ```python
+  sns.histplot(df["column_name"])
+  sns.kdeplot(df["column_name"])
+  sns.boxplot(x=df["column_name"])
+  ```
+
+- **Relationship between two numerical variables:**
+  - **`sns.scatterplot()`**: For **scatter plots** to show the relationship between two numerical variables.
+
+  ```python
+  sns.scatterplot(x=df["num_var1"], y=df["num_var2"])
+  ```
+
+### **2. For Categorical Data:**
+
+- **Count of categories (Frequency distribution):**
+  - **`sns.countplot()`**: For **bar plots** showing the count of categories in a categorical variable.
+
+  ```python
+  sns.countplot(x=df["categorical_column"])
+  ```
+
+- **Comparison of categorical variable with numerical data:**
+  - **`sns.boxplot()`**: For comparing numerical data across different categories.
+  - **`sns.violinplot()`**: For visualizing the distribution of a numerical variable across categories, combining aspects of boxplots and KDEs.
+
+  ```python
+  sns.boxplot(x="categorical_column", y="numerical_column", data=df)
+  sns.violinplot(x="categorical_column", y="numerical_column", data=df)
+  ```
+
+- **Comparison of categories' means:**
+  - **`sns.barplot()`**: For **bar plots** showing the mean of a numerical variable grouped by categories.
+
+  ```python
+  sns.barplot(x="categorical_column", y="numerical_column", data=df)
+  ```
+
+### **3. For Relationships Between Numerical and Categorical Data:**
+
+- **Heatmap for correlation matrix (numerical data):**
+  - **`sns.heatmap()`**: For **heatmaps** showing correlations or other matrices.
+
+  ```python
+  sns.heatmap(df.corr(), annot=True, cmap="coolwarm")
+  ```
+
+- **Pairwise relationships:**
+  - **`sns.pairplot()`**: For showing pairwise relationships between multiple numerical variables.
+
+  ```python
+  sns.pairplot(df)
+  ```
+
+### **4. For Multi-Variable Comparisons:**
+
+- **FacetGrid for splitting the data:**
+  - **`sns.FacetGrid()`**: For creating **multi-plot grids** to analyze the relationships between variables across different subsets.
+
+  ```python
+  g = sns.FacetGrid(df, col="categorical_column")
+  g.map(sns.histplot, "numerical_column")
+  ```
+
+---
+
+### **Quick Rule of Thumb for Common Plot Choices:**
+- **Numerical vs. Numerical**: Use **scatterplot** or **lineplot**.
+- **Categorical vs. Numerical**: Use **boxplot**, **violinplot**, or **barplot**.
+- **Categorical vs. Categorical**: Use **countplot**.
+- **Distribution of Numerical Data**: Use **histplot** or **kdeplot**.
+- **Relationship Across Categories**: Use **barplot** for means or **boxplot/violinplot** for distributions.
+
+
+
+
+
+
+=======
+
+Distribution of Data: How is something spread across a range? (e.g., ages of people, income distribution)
+
+Relationship Between Categories: How do different groups compare to each other? (e.g., average income based on education level)
