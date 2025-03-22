@@ -77,28 +77,54 @@ df2 = df[
 ]
 
 
-print(df2.head(10))
+# print(df2.head(10))
 
 
 # remove usa from df2
 df2["Event name"].str.split("(").str.get(0)
-print(df2)
+# print(df2)
 
 
 # clean the athlete age category
-df2["Athlete year of birth"] = df2["Athlete year of birth"].fillna(0)
 
 # Calculate Age
-df2["Athlete year of birth"] = (
-    df2["Year of event"] - df2["Athlete year of birth"]
-).astype(int)
+df2["Athlete year of birth"] = 2020 - df2["Athlete year of birth"]
 df2.rename(columns={"Athlete year of birth": "Age"}, inplace=True)
 
 # print(df2.head(3))
 
 # now from the athlete performance we are going to remove the h
 
-df2["Athlete performance"] = df2["Athlete performance"].str.replace(
-    "h", "", regex=False
+# df2["Athlete performance"] = df2["Athlete performance"].str.replace(
+#     "h", "", regex=False
+# )
+
+# or we can do it like this
+
+df2["Athlete performance"] = df2["Athlete performance"].str.split(" ").str.get(0)
+
+# print(df2.head(5))
+
+
+# now we are going to drop colomns that we dont need for example lilke athlete club , athlete country  , athlete year of birth
+
+df2.drop(
+    ["Athlete country", "Athlete age category", "Athlete club"], axis=1, inplace=True
 )
-print(df2.head(2))
+
+# print(df2.head(5), "This after DROPPING THE COLSSSSSSSSSSSSS")
+
+# now let's clean up null values
+
+
+sum_of_nullvalues_in_df2 = df2.isna().sum()
+
+print(sum_of_nullvalues_in_df2)
+
+df2 = df2.dropna(subset=["Age"])
+# another method df2["Age"] = df2["Age"].fillna(0)  # Or use df2["Age"].fillna(df2["Age"].mean())
+
+print(df2.head(5))
+new_sum_of_nullvalues_in_df2 = df2.isna().sum()
+
+print(new_sum_of_nullvalues_in_df2)
