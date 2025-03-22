@@ -119,12 +119,27 @@ df2.drop(
 
 sum_of_nullvalues_in_df2 = df2.isna().sum()
 
-print(sum_of_nullvalues_in_df2)
+# print(sum_of_nullvalues_in_df2)
 
 df2 = df2.dropna(subset=["Age"])
 # another method df2["Age"] = df2["Age"].fillna(0)  # Or use df2["Age"].fillna(df2["Age"].mean())
 
-print(df2.head(5))
+# print(df2.head(5))
 new_sum_of_nullvalues_in_df2 = df2.isna().sum()
 
-print(new_sum_of_nullvalues_in_df2)
+# print(new_sum_of_nullvalues_in_df2)
+
+
+# check for duplicate
+check_duplicates = df2[df2.duplicated() == True]
+
+print(check_duplicates)
+
+df2 = df2.reset_index(drop=True)
+# print(df2.head(5))
+
+
+# fix types
+
+dtypes_of_df2 = df2.dtypes
+print(dtypes_of_df2)
