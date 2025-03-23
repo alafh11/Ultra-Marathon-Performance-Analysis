@@ -28,3 +28,9 @@ The dataset was sourced from [Kaggle](#) and contains the following key features
 
 3. **Data Export**:
    - The cleaned and processed data is exported to a CSV file (`cleaned_ultra_marathon_data.csv`) for further use in tools like Power BI.
+
+## Conclusion
+This project demonstrates the process of cleaning and analyzing a dataset of ultra marathon races using Python. The cleaned dataset (`cleaned_ultra_marathon_data.csv`) is now ready for further analysis or visualization in tools like Power BI. Key insights include trends in athlete performance by gender, distance, and age groups, as well as seasonal variations in race performance.
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
