@@ -2,7 +2,7 @@ import pandas as pd
 
 # Load the dataset
 data = pd.read_csv(
-    r"C:\Users\Alaa\Desktop\project for data manipulation with python\TWO_CENTURIES_OF_UM_RACES.CSV.csv"
+    r"filepath"
 )
 
 # Preview the first 5 rows of the dataset
