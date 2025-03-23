@@ -48,7 +48,4 @@ The dataset was sourced from [Kaggle](#).
 4. **Insights and Conclusions**:
    - Derived key insights about athlete performance and trends.
 
-## How to Use This Repository
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/UltraMarathon-Performance-Analysis.git
+
